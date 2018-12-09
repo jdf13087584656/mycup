@@ -1,0 +1,10 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /mybase
+spring:
+  datasource:
+    url: jdbc:mysql://347.105.191.84:3306/test_zk
+    username: root
+    password: xienan187
+
