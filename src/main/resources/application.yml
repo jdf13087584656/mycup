@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8080
   servlet:
     context-path: /mybase
 
@@ -19,6 +19,8 @@ mybatis:
   type-aliases-package: com.jdf.mycups.dao.po
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #SQL语句控制台打印
+
+
 
 
 
