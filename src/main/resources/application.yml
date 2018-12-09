@@ -2,9 +2,24 @@ server:
   port: 8088
   servlet:
     context-path: /mybase
+
+
+logging:
+  file: logs/spring-boot-logging.log
+  level:
+    com.jdf.mycups: debug
+
 spring:
   datasource:
-    url: jdbc:mysql://347.105.191.84:3306/test_zk
+    url: jdbc:mysql://47.105.191.84:3306/mycup
     username: root
     password: xienan187
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.jdf.mycups.dao.po
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #SQL语句控制台打印
+
+
+
 

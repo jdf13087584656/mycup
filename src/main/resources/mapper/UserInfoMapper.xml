@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jdf.mycups.dao.UserInfoDao">
+    <!--<sql id="table">-->
+        <!--hse.t_user_info-->
+    <!--</sql>-->
+    <!--<update id="upDatePwd">-->
+        <!--update hse.t_user_info set password = #{password} where userid=#{userid} ;-->
+    <!--</update>-->
+    <!--<delete id="delUserRoler">-->
+        <!--DELETE FROM hse.t_user_role WHERE userid=#{userid}-->
+    <!--</delete>-->
+
+
+    <!--<select id="find" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--SELECT *-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+    <!--</select>-->
+    <!--<insert id="insertUserRole"  parameterType="com.hx.hsemanager.dao.po.UserRoleRelation">-->
+        <!--insert into hse.t_user_role (id,roleid,userid) values(#{id},#{roleid},#{userid})-->
+    <!--</insert>-->
+    <!--<select id="get" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--SELECT t.userid,t.loadname,t.name,t.departmentid,t.employeetype,t.posttype,t.posttime,t.shiftgroupcode-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+        <!--<where>-->
+            <!--t.userid = #{userid}-->
+        <!--</where>-->
+    <!--</select>-->
+    <!--&lt;!&ndash;查询违章人员列表&ndash;&gt;-->
+    <!--<select id="findViolatorUsers" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--SELECT t.userid,t.loadname,t.name,t.departmentid,t.employeetype,t.posttype,t.posttime,t.shiftgroupcode-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+    <!--</select>-->
+
+    <!--<select id="getByNameAndPassword" parameterType="com.hx.hsemanager.dao.po.UserInfo"-->
+            <!--resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--SELECT *-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+        <!--<where>-->
+            <!--t.name = #{name}-->
+            <!--and t.password = #{password}-->
+        <!--</where>-->
+    <!--</select>-->
+    <!--<select id="findByUid" resultType="com.hx.hsemanager.dao.po.UserRoleRelation">-->
+        <!--SELECT *-->
+        <!--FROM hse.t_user_role t-->
+        <!--<where>-->
+            <!--t.userid=#{userid}-->
+        <!--</where>-->
+    <!--</select>-->
+    <!--<select id="findByLoadname" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--SELECT *,CASE WHEN shiftgroupcode ='10' then '工程1班'-->
+                    <!--WHEN shiftgroupcode ='20' then '工程2班'-->
+                    <!--WHEN shiftgroupcode ='30' then '工程3班'-->
+                    <!--WHEN shiftgroupcode ='40' then '大班'-->
+                    <!--end shiftgroupname-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+        <!--<where>-->
+            <!--t.loadname = #{loadname}-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <!--<select id="findRoleInfoByUserid" resultType="com.hx.hsemanager.dao.po.RoleInfo">-->
+        <!--SELECT ri.*-->
+        <!--from hse.t_role_info ri-->
+        <!--LEFT JOIN hse.t_user_role ur ON ri.roleid = ur.roleid-->
+        <!--LEFT JOIN-->
+        <!--<include refid="table"/>-->
+        <!--t ON t.userid = ur.userid-->
+        <!--<where>-->
+            <!--t.userid = #{userid}-->
+        <!--</where>-->
+    <!--</select>-->
+    <!--<select id="findByRoleAndDepid" resultType="com.hx.hsemanager.vo.UserInfoVO">-->
+        <!--select t.userid,t.name from hse.t_user_info t-->
+        <!--where t.departmentid IN-->
+        <!--(select d.departmentid from  hse.t_department_info d  where d.parentid=#{parentid})-->
+<!--&#45;&#45;         AND-->
+<!--&#45;&#45;       t.userid IN-->
+<!--&#45;&#45;       (SELECT r.userid FROM hse.t_user_role r WHERE r.roleid in('1','3'))-->
+    <!--</select>-->
+    <!--<select id="findByDep" resultType="com.hx.hsemanager.vo.UserInfoVO">-->
+        <!--select t.userid,t.name from hse.t_user_info t-->
+        <!--where t.departmentid IN-->
+        <!--(select d.departmentid from  hse.t_department_info d  where d.parentid=#{parentid})-->
+    <!--</select>-->
+
+    <!--<select id="findInDep" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--select *-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+        <!--where t.departmentid IN-->
+        <!--<foreach collection="list" item="deptid" separator="," open="(" close=")">-->
+            <!--#{deptid, jdbcType=VARCHAR}-->
+        <!--</foreach>-->
+    <!--</select>-->
+    <!--<select id="findByidPwd" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--select * from hse.t_user_info t-->
+        <!--WHERE t.userid=#{id}-->
+
+    <!--</select>-->
+    <!--<select id="findUsersByRoleAndDept" resultType="com.hx.hsemanager.vo.UserInfoVO">-->
+        <!--select t.userid,t.name-->
+        <!--<if test=" type == 1">-->
+            <!--,t.loadname,t.posttype,t.posttime,t.employeetype-->
+        <!--</if>-->
+        <!--,d.deptname-->
+        <!--,array_to_string(ARRAY(SELECT r.name FROM hse.t_role_info r LEFT JOIN hse.t_user_role ur ON ur.roleid = r.roleid-->
+        <!--WHERE ur.userid = t.userid),'、') rolenames-->
+        <!--FROM-->
+        <!--<include refid="table"/>-->
+        <!--t-->
+        <!--LEFT JOIN hse.t_department_info d on d.departmentid = t.departmentid-->
+        <!--where 1=1-->
+        <!--<if test=" deptcodes != null &amp;&amp; deptcodes.size > 0">-->
+            <!--and d.deptcode IN-->
+            <!--<foreach collection="deptcodes" item="deptcode" separator="," open="(" close=")">-->
+                <!--#{deptcode, jdbcType=VARCHAR}-->
+            <!--</foreach>-->
+        <!--</if>-->
+        <!--<if test=" roleids != null &amp;&amp; roleids.size > 0">-->
+            <!--and t.userid in (SELECT userid from hse.t_user_role where roleid in-->
+            <!--<foreach collection="roleids" item="roleid" separator="," open="(" close=")">-->
+                <!--#{roleid, jdbcType=VARCHAR}-->
+            <!--</foreach>-->
+            <!--)-->
+        <!--</if>-->
+        <!--<if test=" name !='%%'">-->
+            <!--and t.name like #{name, jdbcType=VARCHAR}-->
+        <!--</if>-->
+        <!--order by convert_to(t.name,'GBK') asc-->
+    <!--</select>-->
+    <!--<select id="findUser" resultType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--select * from hse.t_user_info WHERE userid=#{userid}-->
+    <!--</select>-->
+    <!--<update id="updateByPrimaryKeySelective" parameterType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--update hse.t_user_info-->
+        <!--<set>-->
+            <!--<if test="departmentid != null">-->
+                <!--departmentid = #{departmentid,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="name != null">-->
+                <!--name = #{name,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+                <!--password = #{password,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="state != null">-->
+                <!--state = #{state,jdbcType=INTEGER},-->
+            <!--</if>-->
+            <!--<if test="intime != null">-->
+                <!--intime = #{intime,jdbcType=TIMESTAMP},-->
+            <!--</if>-->
+            <!--<if test="modtime != null">-->
+                <!--modtime = #{modtime,jdbcType=TIMESTAMP},-->
+            <!--</if>-->
+            <!--<if test="loadname != null">-->
+                <!--loadname = #{loadname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="erpnum != null">-->
+                <!--erpnum = #{erpnum,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="threeunit != null">-->
+                <!--threeunit = #{threeunit,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="baseunit != null">-->
+                <!--baseunit = #{baseunit,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="postname != null">-->
+                <!--postname = #{postname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="posttype != null">-->
+                <!--posttype = #{posttype,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="sex != null">-->
+                <!--sex = #{sex,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="nation != null">-->
+                <!--nation = #{nation,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="idcard != null">-->
+                <!--idcard = #{idcard,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="age != null">-->
+                <!--age = #{age,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="birthday != null">-->
+                <!--birthday = #{birthday,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="education != null">-->
+                <!--education = #{education,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="jobdate != null">-->
+                <!--jobdate = #{jobdate,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="posttime != null">-->
+                <!--posttime = #{posttime,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="employeetype != null">-->
+                <!--employeetype = #{employeetype,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="moible != null">-->
+                <!--moible = #{moible,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="shiftgroupcode != null">-->
+                <!--shiftgroupcode=#{shiftgroupcode,jdbcType=VARCHAR},-->
+            <!--</if>-->
+        <!--</set>-->
+        <!--where userid = #{userid,jdbcType=VARCHAR}-->
+    <!--</update>-->
+    <!--<insert id="insertSelective" parameterType="com.hx.hsemanager.dao.po.UserInfo">-->
+        <!--insert into hse.t_user_info-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="userid != null">-->
+                <!--userid,-->
+            <!--</if>-->
+            <!--<if test="departmentid != null">-->
+                <!--departmentid,-->
+            <!--</if>-->
+            <!--<if test="name != null">-->
+                <!--name,-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+                <!--password,-->
+            <!--</if>-->
+            <!--<if test="state != null">-->
+                <!--state,-->
+            <!--</if>-->
+            <!--<if test="intime != null">-->
+                <!--intime,-->
+            <!--</if>-->
+            <!--<if test="modtime != null">-->
+                <!--modtime,-->
+            <!--</if>-->
+            <!--<if test="loadname != null">-->
+                <!--loadname,-->
+            <!--</if>-->
+            <!--<if test="erpnum != null">-->
+                <!--erpnum,-->
+            <!--</if>-->
+            <!--<if test="threeunit != null">-->
+                <!--threeunit,-->
+            <!--</if>-->
+            <!--<if test="baseunit != null">-->
+                <!--baseunit,-->
+            <!--</if>-->
+            <!--<if test="postname != null">-->
+                <!--postname,-->
+            <!--</if>-->
+            <!--<if test="posttype != null">-->
+                <!--posttype,-->
+            <!--</if>-->
+            <!--<if test="sex != null">-->
+                <!--sex,-->
+            <!--</if>-->
+            <!--<if test="nation != null">-->
+                <!--nation,-->
+            <!--</if>-->
+            <!--<if test="idcard != null">-->
+                <!--idcard,-->
+            <!--</if>-->
+            <!--<if test="age != null">-->
+                <!--age,-->
+            <!--</if>-->
+            <!--<if test="birthday != null">-->
+                <!--birthday,-->
+            <!--</if>-->
+            <!--<if test="education != null">-->
+                <!--education,-->
+            <!--</if>-->
+            <!--<if test="jobdate != null">-->
+                <!--jobdate,-->
+            <!--</if>-->
+            <!--<if test="posttime != null">-->
+                <!--posttime,-->
+            <!--</if>-->
+            <!--<if test="employeetype != null">-->
+                <!--employeetype,-->
+            <!--</if>-->
+            <!--<if test="moible != null">-->
+                <!--moible,-->
+            <!--</if>-->
+            <!--<if test="shiftgroupcode != null">-->
+                <!--shiftgroupcode,-->
+            <!--</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+            <!--<if test="userid != null">-->
+                <!--#{userid,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="departmentid != null">-->
+                <!--#{departmentid,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="name != null">-->
+                <!--#{name,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="password != null">-->
+                <!--#{password,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="state != null">-->
+                <!--#{state,jdbcType=INTEGER},-->
+            <!--</if>-->
+            <!--<if test="intime != null">-->
+                <!--#{intime,jdbcType=TIMESTAMP},-->
+            <!--</if>-->
+            <!--<if test="modtime != null">-->
+                <!--#{modtime,jdbcType=TIMESTAMP},-->
+            <!--</if>-->
+            <!--<if test="loadname != null">-->
+                <!--#{loadname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="erpnum != null">-->
+                <!--#{erpnum,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="threeunit != null">-->
+                <!--#{threeunit,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="baseunit != null">-->
+                <!--#{baseunit,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="postname != null">-->
+                <!--#{postname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="posttype != null">-->
+                <!--#{posttype,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="sex != null">-->
+                <!--#{sex,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="nation != null">-->
+                <!--#{nation,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="idcard != null">-->
+                <!--#{idcard,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="age != null">-->
+                <!--#{age,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="birthday != null">-->
+                <!--#{birthday,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="education != null">-->
+                <!--#{education,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="jobdate != null">-->
+                <!--#{jobdate,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="posttime != null">-->
+                <!--#{posttime,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="employeetype != null">-->
+                <!--#{employeetype,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="moible != null">-->
+                <!--#{moible,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="shiftgroupcode != null">-->
+                <!--#{shiftgroupcode,jdbcType=VARCHAR},-->
+            <!--</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+    <select id="getUserInfo" resultType="com.jdf.mycups.dao.po.UserInfo">
+        select * from cup_user_info;
+    </select>
+</mapper>
