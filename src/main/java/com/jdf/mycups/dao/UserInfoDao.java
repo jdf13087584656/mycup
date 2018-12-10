@@ -7,5 +7,8 @@ import java.util.List;
 
 @Repository
 public interface UserInfoDao {
+
+    UserInfo findByName(String username);
+
     List<UserInfo> getUserInfo();
 }
