@@ -1,6 +1,9 @@
 package com.jdf.mycups.config;
 
+import com.jdf.mycups.config.security.MyAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 
+    @Autowired
+    MyAuthenticationProvider myAuthenticationProvider;
     @Override
     public void configure(WebSecurity web) throws Exception {
         //设置不需要经过spring security保护的资源
@@ -28,6 +33,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .csrf().disable();
+
+    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auto)throws Exception{
+        auto.authenticationProvider(myAuthenticationProvider);
 
     }
 

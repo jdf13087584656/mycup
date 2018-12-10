@@ -1,18 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>登录</title>
-    <%--<link href="<%= request.getContextPath()%>/assets/css/customer.css" rel="stylesheet"/>--%>
-    <%--<link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/jquery.mloading.css">--%>
-    <%--<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>--%>
-    <%--<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>--%>
-    <%--<script type="text/javascript" src="<%= request.getContextPath()%>/libs/jquery-1.8.0.min.js"></script>--%>
-
+    <title>Title</title>
 </head>
-<body class="bg1">
-<form  class="form-signin" action="/login/form" method="post">
+<body>
+<form  class="form-signin" action="<%= request.getContextPath()%>/login/form" method="post">
     <h2 class="form-signin-heading">用户登录</h2>
     <table>
         <tr>

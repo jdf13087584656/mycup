@@ -11,7 +11,7 @@
 	<groupId>com.jdf</groupId>
 	<artifactId>mycups</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>mycups</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -70,6 +70,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+		</dependency>
+
+		<!-- JSTL (JSP standard Tag Library) JSP 标准标签库
+		   不加无法跳转页面
+		  -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- spring boot 内置tomcat jsp支持 -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<!--<scope>provided</scope>-->
 		</dependency>
 	</dependencies>
 

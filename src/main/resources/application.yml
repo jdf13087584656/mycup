@@ -14,11 +14,17 @@ spring:
     url: jdbc:mysql://47.105.191.84:3306/mycup
     username: root
     password: xienan187
+  mvc:
+      view:
+       prefix: /WEB-INF/JSP/
+       suffix: .jsp
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.jdf.mycups.dao.po
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #SQL语句控制台打印
+
+
 
 
 

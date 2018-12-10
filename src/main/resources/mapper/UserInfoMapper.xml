@@ -373,6 +373,6 @@
         select * from cup_user_info;
     </select>
     <select id="findByName" resultType="com.jdf.mycups.dao.po.UserInfo">
-        select * from cup_user_info WHERE ;
+        select * from cup_user_info WHERE username=#{username}
     </select>
 </mapper>
