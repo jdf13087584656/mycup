@@ -45,6 +45,11 @@ public class UserController {
     public String login(){
         return "login-up";
     }
+    @RequestMapping("/index")
+    public String index_into(){
+        return "index";
+    }
+
     @RequestMapping("/login-error")
     public String login_error(){
         return "login-error";
