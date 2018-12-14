@@ -1,5 +1,6 @@
 package com.jdf.mycups.controller;
 
+import com.jdf.mycups.annotation.Mylog;
 import com.jdf.mycups.dao.po.UserInfo;
 import com.jdf.mycups.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ public class UserController {
     UserService userService;
     @GetMapping("/users")
     @ResponseBody
+    @Mylog(value = "获取用户信息")
     public ResponseEntity getUser(){
         try {
             log.info("获取用户");

@@ -44,7 +44,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
         // throw new BadCredentialsException("密码不正确");
         // }
         // //这里还可以加一些其他信息的判断，比如用户账号已停用等判断，这里为了方便我接下去的判断，我就不用加密了。
-        if (!userInfo.getPassword().equals("123")) {
+        if (!userInfo.getPassword().equals(password)) {
             throw new BadCredentialsException("密码不正确");
         }
 //        Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();

@@ -12,12 +12,14 @@ public class UserInfo implements Serializable ,UserDetails {
     private Integer userid;
     private String username;
     private String password;
+    private String phone;
     private String role;
 
-    public UserInfo(Integer userid, String username, String password) {
+    public UserInfo(Integer userid, String username, String password,String phone) {
         this.userid = userid;
         this.username = username;
         this.password = password;
+        this.phone = phone;
     }
 
     public UserInfo(String username, String password, String role) {
