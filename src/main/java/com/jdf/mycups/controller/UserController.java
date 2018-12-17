@@ -21,6 +21,7 @@ public class UserController {
     @GetMapping("/users")
     @ResponseBody
     @Mylog(value = "获取用户信息")
+//    @ApiOperation(value = "获取用户信息", notes = "获取用户信息", httpMethod = "get")
     public ResponseEntity getUser(){
         try {
             log.info("获取用户");

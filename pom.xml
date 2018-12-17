@@ -85,7 +85,18 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-
+		<!--添加Swagger2依赖 SATRT -->
+		<!--<dependency>-->
+			<!--<groupId>io.springfox</groupId>-->
+			<!--<artifactId>springfox-swagger2</artifactId>-->
+			<!--<version>2.2.2</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>io.springfox</groupId>-->
+			<!--<artifactId>springfox-swagger-ui</artifactId>-->
+			<!--<version>2.2.2</version>-->
+		<!--</dependency>-->
+		<!--添加Swagger2依赖 END -->
 		<!-- JSTL (JSP standard Tag Library) JSP 标准标签库
 		   不加无法跳转页面
 		  -->

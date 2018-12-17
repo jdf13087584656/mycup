@@ -31,6 +31,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
         String password =(String) authentication.getCredentials();
         UserInfo userInfo = (UserInfo) userDetailsService.loadUserByUsername(username);
         if (userInfo==null){
+            log.info("用户名不存在");
             throw new BadCredentialsException("用户名不存在");
         }
         // //这里我们还要判断密码是否正确，实际应用中，我们的密码一般都会加密，以Md5加密为例
@@ -45,12 +46,15 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
         // }
         // //这里还可以加一些其他信息的判断，比如用户账号已停用等判断，这里为了方便我接下去的判断，我就不用加密了。
         if (!userInfo.getPassword().equals(password)) {
+            log.info("密码不正确");
             throw new BadCredentialsException("密码不正确");
         }
 //        Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();
         // 构建返回的用户登录成功的token
 //        return new UsernamePasswordAuthenticationToken(userInfo, password, authorities);
-        return new UsernamePasswordAuthenticationToken(userInfo, password);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userInfo, password);
+
+        return usernamePasswordAuthenticationToken;
 
 
     }

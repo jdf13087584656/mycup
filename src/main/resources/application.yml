@@ -11,7 +11,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:mysql://47.105.191.84:3306/mycup
+    url: jdbc:mysql://47.105.191.84:3306/mycup?useUnicode=true&characterEncoding=utf8
     username: root
     password: xienan187
   mvc:

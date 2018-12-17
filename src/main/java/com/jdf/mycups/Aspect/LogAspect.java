@@ -3,6 +3,7 @@ package com.jdf.mycups.Aspect;
 import com.alibaba.fastjson.JSON;
 import com.jdf.mycups.annotation.Mylog;
 import com.jdf.mycups.dao.po.OperationLog;
+import com.jdf.mycups.dao.po.UserInfo;
 import com.jdf.mycups.service.OperationLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -66,9 +67,9 @@ public class LogAspect {
         operationLog.setParams(JSON.toJSONString(args));
 
         //获取用户
-        Principal principal =(Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserInfo principal =(UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        operationLog.setUsername(principal.getName());
+        operationLog.setUsername(principal.getUsername());
 
 
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
