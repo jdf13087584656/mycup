@@ -52,7 +52,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
 //        Collection<? extends GrantedAuthority> authorities = userInfo.getAuthorities();
         // 构建返回的用户登录成功的token
 //        return new UsernamePasswordAuthenticationToken(userInfo, password, authorities);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userInfo, password);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         return usernamePasswordAuthenticationToken;
 

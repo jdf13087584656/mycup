@@ -66,10 +66,12 @@ public class LogAspect {
 
         operationLog.setParams(JSON.toJSONString(args));
 
-        //获取用户
-        UserInfo principal =(UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //获取用户,根据provider里面设置的,设置userinfo
+//        UserInfo principal =(UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //获取用户,根据provider里面设置的,设置username
+        String principals =(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        operationLog.setUsername(principal.getUsername());
+        operationLog.setUsername(principals);
 
 
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();

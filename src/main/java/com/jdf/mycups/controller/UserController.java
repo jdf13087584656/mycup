@@ -3,6 +3,8 @@ package com.jdf.mycups.controller;
 import com.jdf.mycups.annotation.Mylog;
 import com.jdf.mycups.dao.po.UserInfo;
 import com.jdf.mycups.service.UserService;
+//import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,10 +24,10 @@ public class UserController {
     @GetMapping("/users")
     @ResponseBody
     @Mylog(value = "获取用户信息")
-//    @ApiOperation(value = "获取用户信息", notes = "获取用户信息", httpMethod = "get")
-    public ResponseEntity getUser(){
+   @ApiOperation(value = "获取用户信息", notes = "获取所有用户信息", httpMethod = "GET")
+    public ResponseEntity getUser(Principal principal){
         try {
-            log.info("获取用户");
+            log.info("获取用户"+principal);
             List<UserInfo> user = userService.getUser();
           return   ResponseEntity.ok(user);
         }catch (Exception e){
@@ -47,6 +50,7 @@ public class UserController {
     @RequestMapping("/login")
     public String login(){
         return "login-up";
+
     }
     @RequestMapping("/index")
     public String index_into(){
@@ -57,6 +61,7 @@ public class UserController {
     public String login_error(){
         return "login-error";
     }
+
     @RequestMapping("/whoim")
     @ResponseBody
     public Object whoIm(){
